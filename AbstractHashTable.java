@@ -1,84 +1,84 @@
-import java.util.Objects;
-
 abstract class AbstractHashTable {
-    protected static final int MAX_CAPACITY = 32;
-    protected final Node[] table;
-    protected final int capacity;
-    protected int size;
-    protected long collisionsTotal;
+    protected static final int MAX_CAPACITY = 32; // regra da professora
+    protected final Node[] tabela;
+    protected final int capacidade;
+    protected int tamanho;
+    protected long colisoesTotais;
 
-    public AbstractHashTable(int capacity) {
-        if (capacity <= 0 || capacity > MAX_CAPACITY) capacity = MAX_CAPACITY;
-        this.capacity = capacity;
-        this.table = new Node[capacity];
-        this.size = 0;
-        this.collisionsTotal = 0;
+    public AbstractHashTable(int capacidadeDesejada) {
+        int cap = capacidadeDesejada;
+        if (cap <= 0 || cap > MAX_CAPACITY) cap = MAX_CAPACITY;
+        this.capacidade = cap;
+        this.tabela = new Node[capacidade];
+        this.tamanho = 0;
+        this.colisoesTotais = 0;
     }
 
-    protected abstract int hash(String key);
+    protected abstract int hash(String chave);
 
-    public final void insert(String key) {
-        Objects.requireNonNull(key, "key");
-        int idx = hash(key);
-        Node head = table[idx];
-        // Count collision if bucket already has at least one element
-        if (head != null) {
-            // check duplicate while walking
-            Node cur = head;
-            while (cur != null) {
-                if (cur.key.equals(key)) return; // no duplicates
-                cur = cur.next;
+    public final void insert(String chave) {
+        if (chave == null) throw new NullPointerException("chave nula");
+        int idx = hash(chave);
+        Node cabeca = tabela[idx];
+
+        if (cabeca != null) {
+            Node atual = cabeca;
+            while (atual != null) {
+                if (iguais(atual.chave, chave)) return; // evita duplicata
+                atual = atual.proximo;
             }
-            collisionsTotal++;
+            colisoesTotais = colisoesTotais + 1;
         }
-        // prepend
-        Node nn = new Node(key);
-        nn.next = head;
-        table[idx] = nn;
-        size++;
+
+        Node novo = new Node(chave);
+        novo.proximo = cabeca;
+        tabela[idx] = novo;
+        tamanho = tamanho + 1;
     }
 
-    public final boolean contains(String key) {
-        Objects.requireNonNull(key, "key");
-        int idx = hash(key);
-        Node cur = table[idx];
-        while (cur != null) {
-            if (cur.key.equals(key)) return true;
-            cur = cur.next;
+    public final boolean contains(String chave) {
+        if (chave == null) throw new NullPointerException("chave nula");
+        int idx = hash(chave);
+        Node atual = tabela[idx];
+        while (atual != null) {
+            if (iguais(atual.chave, chave)) return true;
+            atual = atual.proximo;
         }
         return false;
     }
 
-    public final int size() { return size; }
-    public final int capacity() { return capacity; }
-    public final long collisionsTotal() { return collisionsTotal; }
+    public final int size() { return tamanho; }
+    public final int capacity() { return capacidade; }
+    public final long collisionsTotal() { return colisoesTotais; }
 
-    /** Distribution: how many keys per position (bucket). */
     public final int[] distribution() {
-        int[] dist = new int[capacity];
-        for (int i = 0; i < capacity; i++) {
+        int[] dist = new int[capacidade];
+        for (int i = 0; i < capacidade; i++) {
             int c = 0;
-            Node cur = table[i];
-            while (cur != null) { c++; cur = cur.next; }
+            Node atual = tabela[i];
+            while (atual != null) { c = c + 1; atual = atual.proximo; }
             dist[i] = c;
         }
         return dist;
     }
 
-    /** Collisions per bucket defined as max(0, chainLength-1). */
     public final int[] collisionsPerBucket() {
         int[] dist = distribution();
-        int[] col = new int[capacity];
-        for (int i = 0; i < capacity; i++) col[i] = Math.max(0, dist[i] - 1);
+        int[] col = new int[capacidade];
+        for (int i = 0; i < capacidade; i++) {
+            int v = dist[i] - 1;
+            if (v < 0) v = 0;
+            col[i] = v;
+        }
         return col;
     }
 
     public final int maxChainLength() {
         int max = 0;
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < capacidade; i++) {
             int len = 0;
-            Node cur = table[i];
-            while (cur != null) { len++; cur = cur.next; }
+            Node atual = tabela[i];
+            while (atual != null) { len = len + 1; atual = atual.proximo; }
             if (len > max) max = len;
         }
         return max;
@@ -86,12 +86,24 @@ abstract class AbstractHashTable {
 
     public final int nonEmptyBuckets() {
         int c = 0;
-        for (int i = 0; i < capacity; i++) if (table[i] != null) c++;
+        for (int i = 0; i < capacidade; i++) if (tabela[i] != null) c = c + 1;
         return c;
     }
 
     public final double avgChainLenNonEmpty() {
-        int neb = nonEmptyBuckets();
-        return neb == 0 ? 0.0 : (double) size / neb;
+        int naoVazios = nonEmptyBuckets();
+        if (naoVazios == 0) return 0.0;
+        return ((double) tamanho) / ((double) naoVazios);
+    }
+
+    private boolean iguais(String a, String b) {
+        return a.equals(b); 
+    }
+
+    
+    protected final int modPositivo(int valor, int m) {
+        int r = valor % m;
+        if (r < 0) r = r + m;
+        return r;
     }
 }

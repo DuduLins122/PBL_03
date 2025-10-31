@@ -1,0 +1,802 @@
+%PDF-1.4
+4 0 obj
+<< /Length 996 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+25 800 Td
+/F1 14 Tf
+162 0 Td
+(Relatório ? TDE 03 ? Tabelas) Tj
+T*
+T*
+-162 0 Td
+/F1 10 Tf
+(Hash) Tj
+T*
+T*
+T*
+(TABELA HASH) Tj
+T*
+(1) Tj
+T*
+T*
+(MÉTRICAS) Tj
+T*
+(PRINCIPAIS) Tj
+T*
+(Tamanho \(size\):) Tj
+T*
+(5000) Tj
+T*
+(Capacidade:) Tj
+T*
+(32) Tj
+T*
+(Colisoes totais \(insercao\):) Tj
+T*
+(4968) Tj
+T*
+(Tempo de insercao \(ns\):) Tj
+T*
+(52300811) Tj
+T*
+(Tempo de busca \(ns\):) Tj
+T*
+(32457969) Tj
+T*
+(Buckets nao-vazios:) Tj
+T*
+(32) Tj
+T*
+(Tamanho maximo de cadeia:) Tj
+T*
+(184) Tj
+T*
+(Tamanho medio das cadeias \(apenas buckets nao-vazios\):) Tj
+T*
+(156.250) Tj
+T*
+T*
+T*
+(DISTRIBUIÇÃO DE) Tj
+T*
+(CHAVES) Tj
+T*
+(00:) Tj
+T*
+(142) Tj
+T*
+(01:) Tj
+T*
+(158) Tj
+T*
+(02:) Tj
+T*
+(165) Tj
+T*
+(03:) Tj
+T*
+(164) Tj
+T*
+(04:) Tj
+T*
+(157) Tj
+T*
+(05:) Tj
+T*
+(153) Tj
+T*
+(06:) Tj
+T*
+(160) Tj
+T*
+(07:) Tj
+T*
+(150) Tj
+T*
+(08:) Tj
+T*
+(130) Tj
+T*
+(09:) Tj
+T*
+(169) Tj
+T*
+(10:) Tj
+T*
+(156) Tj
+T*
+(11:) Tj
+T*
+(157) Tj
+T*
+(12:) Tj
+T*
+(160) Tj
+T*
+(13:) Tj
+T*
+ET
+BT
+/F1 10 Tf
+463 52 Td
+(Pagina 1/6) Tj
+ET
+
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 783 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+25 800 Td
+/F1 14 Tf
+240 0 Td
+(149) Tj
+T*
+T*
+-240 0 Td
+/F1 10 Tf
+(14:) Tj
+T*
+(168) Tj
+T*
+(15:) Tj
+T*
+(154) Tj
+T*
+(16:) Tj
+T*
+(156) Tj
+T*
+(17:) Tj
+T*
+(150) Tj
+T*
+(18:) Tj
+T*
+(184) Tj
+T*
+(19:) Tj
+T*
+(146) Tj
+T*
+(20:) Tj
+T*
+(174) Tj
+T*
+(21:) Tj
+T*
+(150) Tj
+T*
+(22:) Tj
+T*
+(154) Tj
+T*
+(23:) Tj
+T*
+(139) Tj
+T*
+(24:) Tj
+T*
+(143) Tj
+T*
+(25:) Tj
+T*
+(154) Tj
+T*
+(26:) Tj
+T*
+(163) Tj
+T*
+(27:) Tj
+T*
+(171) Tj
+T*
+(28:) Tj
+T*
+(154) Tj
+T*
+(29:) Tj
+T*
+(159) Tj
+T*
+(30:) Tj
+T*
+(162) Tj
+T*
+(31:) Tj
+T*
+(149) Tj
+T*
+T*
+T*
+(COLISÕES POR) Tj
+T*
+(POSIÇÃO) Tj
+T*
+(00:) Tj
+T*
+(141) Tj
+T*
+(01:) Tj
+T*
+(157) Tj
+T*
+(02:) Tj
+T*
+(164) Tj
+T*
+(03:) Tj
+T*
+(163) Tj
+T*
+(04:) Tj
+T*
+(156) Tj
+T*
+(05:) Tj
+T*
+(152) Tj
+T*
+(06:) Tj
+T*
+(159) Tj
+T*
+(07:) Tj
+T*
+ET
+BT
+/F1 10 Tf
+463 52 Td
+(Pagina 2/6) Tj
+ET
+
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 779 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+25 800 Td
+/F1 14 Tf
+240 0 Td
+(149) Tj
+T*
+T*
+-240 0 Td
+/F1 10 Tf
+(08:) Tj
+T*
+(129) Tj
+T*
+(09:) Tj
+T*
+(168) Tj
+T*
+(10:) Tj
+T*
+(155) Tj
+T*
+(11:) Tj
+T*
+(156) Tj
+T*
+(12:) Tj
+T*
+(159) Tj
+T*
+(13:) Tj
+T*
+(148) Tj
+T*
+(14:) Tj
+T*
+(167) Tj
+T*
+(15:) Tj
+T*
+(153) Tj
+T*
+(16:) Tj
+T*
+(155) Tj
+T*
+(17:) Tj
+T*
+(149) Tj
+T*
+(18:) Tj
+T*
+(183) Tj
+T*
+(19:) Tj
+T*
+(145) Tj
+T*
+(20:) Tj
+T*
+(173) Tj
+T*
+(21:) Tj
+T*
+(149) Tj
+T*
+(22:) Tj
+T*
+(153) Tj
+T*
+(23:) Tj
+T*
+(138) Tj
+T*
+(24:) Tj
+T*
+(142) Tj
+T*
+(25:) Tj
+T*
+(153) Tj
+T*
+(26:) Tj
+T*
+(162) Tj
+T*
+(27:) Tj
+T*
+(170) Tj
+T*
+(28:) Tj
+T*
+(153) Tj
+T*
+(29:) Tj
+T*
+(158) Tj
+T*
+(30:) Tj
+T*
+(161) Tj
+T*
+(31:) Tj
+T*
+(148) Tj
+T*
+T*
+T*
+(TABELA HASH) Tj
+T*
+(2) Tj
+T*
+T*
+(MÉTRICAS) Tj
+T*
+(PRINCIPAIS) Tj
+T*
+ET
+BT
+/F1 10 Tf
+463 52 Td
+(Pagina 3/6) Tj
+ET
+
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 979 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+25 800 Td
+/F1 14 Tf
+204 0 Td
+(Tamanho \(size\):) Tj
+T*
+T*
+-204 0 Td
+/F1 10 Tf
+(5000) Tj
+T*
+(Capacidade:) Tj
+T*
+(32) Tj
+T*
+(Colisoes totais \(insercao\):) Tj
+T*
+(4968) Tj
+T*
+(Tempo de insercao \(ns\):) Tj
+T*
+(69192761) Tj
+T*
+(Tempo de busca \(ns\):) Tj
+T*
+(38405097) Tj
+T*
+(Buckets nao-vazios:) Tj
+T*
+(32) Tj
+T*
+(Tamanho maximo de cadeia:) Tj
+T*
+(176) Tj
+T*
+(Tamanho medio das cadeias \(apenas buckets nao-vazios\):) Tj
+T*
+(156.250) Tj
+T*
+T*
+T*
+(DISTRIBUIÇÃO DE) Tj
+T*
+(CHAVES) Tj
+T*
+(00:) Tj
+T*
+(145) Tj
+T*
+(01:) Tj
+T*
+(150) Tj
+T*
+(02:) Tj
+T*
+(148) Tj
+T*
+(03:) Tj
+T*
+(169) Tj
+T*
+(04:) Tj
+T*
+(176) Tj
+T*
+(05:) Tj
+T*
+(158) Tj
+T*
+(06:) Tj
+T*
+(155) Tj
+T*
+(07:) Tj
+T*
+(159) Tj
+T*
+(08:) Tj
+T*
+(151) Tj
+T*
+(09:) Tj
+T*
+(157) Tj
+T*
+(10:) Tj
+T*
+(163) Tj
+T*
+(11:) Tj
+T*
+(172) Tj
+T*
+(12:) Tj
+T*
+(125) Tj
+T*
+(13:) Tj
+T*
+(146) Tj
+T*
+(14:) Tj
+T*
+(152) Tj
+T*
+(15:) Tj
+T*
+(148) Tj
+T*
+(16:) Tj
+T*
+(171) Tj
+T*
+(17:) Tj
+T*
+(155) Tj
+T*
+ET
+BT
+/F1 10 Tf
+463 52 Td
+(Pagina 4/6) Tj
+ET
+
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 783 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+25 800 Td
+/F1 14 Tf
+240 0 Td
+(18:) Tj
+T*
+T*
+-240 0 Td
+/F1 10 Tf
+(161) Tj
+T*
+(19:) Tj
+T*
+(167) Tj
+T*
+(20:) Tj
+T*
+(138) Tj
+T*
+(21:) Tj
+T*
+(159) Tj
+T*
+(22:) Tj
+T*
+(152) Tj
+T*
+(23:) Tj
+T*
+(172) Tj
+T*
+(24:) Tj
+T*
+(154) Tj
+T*
+(25:) Tj
+T*
+(133) Tj
+T*
+(26:) Tj
+T*
+(159) Tj
+T*
+(27:) Tj
+T*
+(144) Tj
+T*
+(28:) Tj
+T*
+(168) Tj
+T*
+(29:) Tj
+T*
+(166) Tj
+T*
+(30:) Tj
+T*
+(169) Tj
+T*
+(31:) Tj
+T*
+(158) Tj
+T*
+T*
+T*
+(COLISÕES POR) Tj
+T*
+(POSIÇÃO) Tj
+T*
+(00:) Tj
+T*
+(144) Tj
+T*
+(01:) Tj
+T*
+(149) Tj
+T*
+(02:) Tj
+T*
+(147) Tj
+T*
+(03:) Tj
+T*
+(168) Tj
+T*
+(04:) Tj
+T*
+(175) Tj
+T*
+(05:) Tj
+T*
+(157) Tj
+T*
+(06:) Tj
+T*
+(154) Tj
+T*
+(07:) Tj
+T*
+(158) Tj
+T*
+(08:) Tj
+T*
+(150) Tj
+T*
+(09:) Tj
+T*
+(156) Tj
+T*
+(10:) Tj
+T*
+(162) Tj
+T*
+(11:) Tj
+T*
+(171) Tj
+T*
+ET
+BT
+/F1 10 Tf
+463 52 Td
+(Pagina 5/6) Tj
+ET
+
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 596 >>
+stream
+BT
+/F1 10 Tf
+13 TL
+25 800 Td
+/F1 14 Tf
+240 0 Td
+(12:) Tj
+T*
+T*
+-240 0 Td
+/F1 10 Tf
+(124) Tj
+T*
+(13:) Tj
+T*
+(145) Tj
+T*
+(14:) Tj
+T*
+(151) Tj
+T*
+(15:) Tj
+T*
+(147) Tj
+T*
+(16:) Tj
+T*
+(170) Tj
+T*
+(17:) Tj
+T*
+(154) Tj
+T*
+(18:) Tj
+T*
+(160) Tj
+T*
+(19:) Tj
+T*
+(166) Tj
+T*
+(20:) Tj
+T*
+(137) Tj
+T*
+(21:) Tj
+T*
+(158) Tj
+T*
+(22:) Tj
+T*
+(151) Tj
+T*
+(23:) Tj
+T*
+(171) Tj
+T*
+(24:) Tj
+T*
+(153) Tj
+T*
+(25:) Tj
+T*
+(132) Tj
+T*
+(26:) Tj
+T*
+(158) Tj
+T*
+(27:) Tj
+T*
+(143) Tj
+T*
+(28:) Tj
+T*
+(167) Tj
+T*
+(29:) Tj
+T*
+(165) Tj
+T*
+(30:) Tj
+T*
+(168) Tj
+T*
+(31:) Tj
+T*
+(157) Tj
+T*
+ET
+BT
+/F1 10 Tf
+463 52 Td
+(Pagina 6/6) Tj
+ET
+
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 14 0 R >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 6 /Kids [ 5 0 R 7 0 R 9 0 R 11 0 R 13 0 R 15 0 R ] >>
+endobj
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+xref
+0 16
+0000000000 65535 f 
+0000006183 00000 n 
+0000006091 00000 n 
+0000005996 00000 n 
+0000000009 00000 n 
+0000001056 00000 n 
+0000001182 00000 n 
+0000002016 00000 n 
+0000002142 00000 n 
+0000002972 00000 n 
+0000003098 00000 n 
+0000004129 00000 n 
+0000004257 00000 n 
+0000005092 00000 n 
+0000005220 00000 n 
+0000005868 00000 n 
+trailer << /Size 16 /Root 1 0 R >>
+startxref
+6232
+%%EOF

@@ -1,5 +1,5 @@
 final class Node {
-    final String key;
-    Node next;
-    Node(String key) { this.key = key; }
+    final String chave;
+    Node proximo;
+    Node(String chave) { this.chave = chave; }
 }

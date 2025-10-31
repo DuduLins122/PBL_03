@@ -1,136 +1,185 @@
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.Locale;
 
 public class Main {
-    private static final int CAPACITY = 32;
+    private static final int CAPACIDADE = 32; // regra: máx. 32
 
     public static void main(String[] args) throws Exception {
-        Locale.setDefault(Locale.ROOT);
-        if (args.length == 0) {
-            System.out.println("Uso: java Main <caminho/para/female_names.txt>");
-            return;
+        // ===== Descoberta automática do caminho do arquivo =====
+        String caminho;
+        if (args.length > 0) {
+            caminho = args[0];
+        } else {
+            File dentroDoSrc = new File("src/female_names.txt");
+            File naRaiz = new File("female_names.txt");
+            if (dentroDoSrc.exists()) {
+                caminho = dentroDoSrc.getPath();
+            } else if (naRaiz.exists()) {
+                caminho = naRaiz.getPath();
+            } else {
+                System.out.println("Uso: java Main <caminho/para/female_names.txt>");
+                System.out.println("Tentativas automáticas falharam:");
+                System.out.println(" - " + dentroDoSrc.getAbsolutePath());
+                System.out.println(" - " + naRaiz.getAbsolutePath());
+                return;
+            }
         }
-        String path = args[0];
-        String[] names = loadNames(path);
-        if (names.length == 0) {
-            System.out.println("Arquivo vazio ou não encontrado.");
+
+        String[] nomes = carregarNomes(caminho);
+        if (nomes.length == 0) {
+            System.out.println("Arquivo vazio ou não encontrado: " + new File(caminho).getAbsolutePath());
             return;
         }
 
-        // Tabela 1
-        AbstractHashTable h1 = new HashTable1(CAPACITY);
+        // ===== Tabela 1 =====
+        AbstractHashTable tabela1 = new HashTable1(CAPACIDADE);
+
         long t0 = System.nanoTime();
-        for (String s : names) h1.insert(s);
+        for (int i = 0; i < nomes.length; i++) {
+            tabela1.insert(nomes[i]);
+        }
         long t1 = System.nanoTime();
-        long insert1 = t1 - t0;
-        long search1 = measureSearch(h1, names);
+        long tempoInsercao1 = t1 - t0;
+        long tempoBusca1 = medirBusca(tabela1, nomes);
 
         Metrics m1 = new Metrics(
                 "Tabela Hash 1 (FNV-1a-like)",
-                insert1, search1, h1.collisionsTotal(),
-                h1.distribution(), h1.collisionsPerBucket(),
-                h1.size(), h1.capacity(), h1.maxChainLength(), h1.nonEmptyBuckets(), h1.avgChainLenNonEmpty()
+                tempoInsercao1, tempoBusca1, tabela1.collisionsTotal(),
+                tabela1.distribution(), tabela1.collisionsPerBucket(),
+                tabela1.size(), tabela1.capacity(), tabela1.maxChainLength(),
+                tabela1.nonEmptyBuckets(), tabela1.avgChainLenNonEmpty()
         );
 
-        // Tabela 2
-        AbstractHashTable h2 = new HashTable2(CAPACITY);
+        // ===== Tabela 2 =====
+        AbstractHashTable tabela2 = new HashTable2(CAPACIDADE);
+
         t0 = System.nanoTime();
-        for (String s : names) h2.insert(s);
+        for (int i = 0; i < nomes.length; i++) {
+            tabela2.insert(nomes[i]);
+        }
         t1 = System.nanoTime();
-        long insert2 = t1 - t0;
-        long search2 = measureSearch(h2, names);
+        long tempoInsercao2 = t1 - t0;
+        long tempoBusca2 = medirBusca(tabela2, nomes);
 
         Metrics m2 = new Metrics(
                 "Tabela Hash 2 (djb2-like)",
-                insert2, search2, h2.collisionsTotal(),
-                h2.distribution(), h2.collisionsPerBucket(),
-                h2.size(), h2.capacity(), h2.maxChainLength(), h2.nonEmptyBuckets(), h2.avgChainLenNonEmpty()
+                tempoInsercao2, tempoBusca2, tabela2.collisionsTotal(),
+                tabela2.distribution(), tabela2.collisionsPerBucket(),
+                tabela2.size(), tabela2.capacity(), tabela2.maxChainLength(),
+                tabela2.nonEmptyBuckets(), tabela2.avgChainLenNonEmpty()
         );
 
-        // Console report (EXIGIDO): tempos, colisões, distribuição por bucket
-        printConsoleReport(m1, m2);
+        // ===== Console (exigido) =====
+        imprimirRelatorioConsole(m1, "1");
+        imprimirRelatorioConsole(m2, "2");
 
-        // PDF (DIFERENCIAL): mesmo conteúdo do console
-        PdfReportWriter.write("relatorio_hash.pdf", "Relatório – TDE 03 – Tabelas Hash",
-                Arrays.asList(
+        // ===== PDF (mesmo conteúdo do console) =====
+        PdfReportWriter.writeReport(
+                "relatorio_hash.pdf",
+                "Relatório – TDE 03 – Tabelas Hash",
+                new String[]{
                         "==== RESULTADOS – CONSOLE (mesmo conteúdo aqui) ====",
-                        m1.toString(),
+                        m1.asText(),
                         "",
-                        m2.toString()
-                )
+                        m2.asText()
+                }
         );
 
-        System.out.println("\nPDF gerado: relatorio_hash.pdf");
+        System.out.println();
+        String caminhoCompleto = new java.io.File("relatorio_hash.pdf").getAbsolutePath();
+        System.out.println("PDF gerado em: " + caminhoCompleto);
     }
 
-    private static void printConsoleReport(Metrics m1, Metrics m2) {
+    private static void imprimirRelatorioConsole(Metrics m, String etiqueta) {
         System.out.println("====================================================");
-        System.out.println(m1.toString());
-        System.out.println("\n-- DISTRIBUIÇÃO POR BUCKET (Tabela 1) --");
-        printArray("Chaves por posição", m1.distribution);
-        printArray("Colisões por posição", m1.collisionsPerBucket);
-
-        System.out.println("\n====================================================");
-        System.out.println(m2.toString());
-        System.out.println("\n-- DISTRIBUIÇÃO POR BUCKET (Tabela 2) --");
-        printArray("Chaves por posição", m2.distribution);
-        printArray("Colisões por posição", m2.collisionsPerBucket);
+        System.out.println(m.asText());
+        System.out.println();
+        System.out.println("-- DISTRIBUICAO POR POSICAO (Tabela " + etiqueta + ") --");
+        imprimirArray("Chaves por posicao", m.distribuicao);
+        imprimirArray("Colisoes por posicao", m.colisoesPorPosicao);
         System.out.println("====================================================");
     }
 
-    private static void printArray(String title, int[] arr) {
-        System.out.println(title + " (cap=" + arr.length + "):");
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < arr.length; i++) {
-            sb.append(i).append(":").append(arr[i]);
-            if (i < arr.length - 1) sb.append(" | ");
+    private static void imprimirArray(String titulo, int[] vetor) {
+        System.out.println(titulo + " (cap=" + vetor.length + "):");
+        // imprime como 0:x | 1:y | ...
+        String linha = "";
+        for (int i = 0; i < vetor.length; i++) {
+            String pedaco = i + ":" + vetor[i];
+            if (i == 0) linha = pedaco;
+            else linha = linha + " | " + pedaco;
         }
-        System.out.println(sb.toString());
+        System.out.println(linha);
     }
 
-    private static long measureSearch(AbstractHashTable h, String[] names) {
-        // 500 presentes + 500 ausentes
-        int hits = Math.min(500, names.length);
-        long t0 = System.nanoTime();
-        for (int i = 0; i < hits; i++) {
-            h.contains(names[(i * 7) % names.length]); // stride p/ amostrar bem
+    private static long medirBusca(AbstractHashTable tabela, String[] nomes) {
+        int qtdPresentes = 500;
+        if (nomes.length < qtdPresentes) qtdPresentes = nomes.length;
+
+        long inicio = System.nanoTime();
+        // buscas presentes (amostragem com stride fixo)
+        for (int i = 0; i < qtdPresentes; i++) {
+            int idx = (i * 7) % nomes.length;
+            tabela.contains(nomes[idx]);
         }
+        // buscas ausentes
         for (int i = 0; i < 500; i++) {
-            h.contains("___NAO_EXISTE___" + i);
+            tabela.contains("__NAO_EXISTE__" + i);
         }
-        long t1 = System.nanoTime();
-        return t1 - t0;
+        long fim = System.nanoTime();
+        return fim - inicio;
     }
 
-    private static String[] loadNames(String path) throws IOException {
-        int count = countLines(path);
-        String[] out = new String[count];
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
-            String line;
+    private static String[] carregarNomes(String caminho) throws IOException {
+        int linhas = contarLinhasNaoVazias(caminho);
+        String[] saida = new String[linhas];
+        InputStream in = new FileInputStream(caminho);
+        InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(isr);
+        try {
+            String linha;
             int i = 0;
-            while ((line = br.readLine()) != null) {
-                line = line.trim();
-                if (line.isEmpty()) continue;
-                out[i++] = line;
+            while ((linha = br.readLine()) != null) {
+                String limpo = trim(linha);
+                if (limpo.length() == 0) continue;
+                saida[i] = limpo;
+                i = i + 1;
             }
+        } finally {
+            br.close();
         }
-        return out;
+        return saida;
     }
 
-    private static int countLines(String path) throws IOException {
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(new FileInputStream(path), StandardCharsets.UTF_8))) {
+    private static int contarLinhasNaoVazias(String caminho) throws IOException {
+        InputStream in = new FileInputStream(caminho);
+        InputStreamReader isr = new InputStreamReader(in, StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(isr);
+        try {
             int c = 0;
-            String line;
-            while ((line = br.readLine()) != null) {
-                if (line.trim().length() == 0) continue;
-                c++;
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                String limpo = trim(linha);
+                if (limpo.length() == 0) continue;
+                c = c + 1;
             }
             return c;
+        } finally {
+            br.close();
         }
+    }
+
+    // trim manual (evita dependência de lib externa e mantém “modo hardcore”)
+    private static String trim(String s) {
+        int ini = 0;
+        int fim = s.length() - 1;
+        while (ini <= fim && ehEspaco(s.charAt(ini))) ini = ini + 1;
+        while (fim >= ini && ehEspaco(s.charAt(fim))) fim = fim - 1;
+        if (ini > fim) return "";
+        return s.substring(ini, fim + 1);
+    }
+
+    private static boolean ehEspaco(char c) {
+        return c == ' ' || c == '\t' || c == '\n' || c == '\r';
     }
 }

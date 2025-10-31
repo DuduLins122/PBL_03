@@ -1,18 +1,19 @@
 final class HashTable1 extends AbstractHashTable {
-    public HashTable1(int capacity) { super(capacity); }
+    public HashTable1(int capacidade) { super(capacidade); }
 
-    // FNV-1a like 32-bit with small avalanche; then floorMod to capacity
+    // FNV-1a 32-bit com um leve mix final, índice por mod positivo manual
     @Override
-    protected int hash(String key) {
-        long h = 0x811C9DC5L; // FNV offset 32-bit
-        for (int i = 0; i < key.length(); i++) {
-            h ^= key.charAt(i);
-            h *= 0x01000193L; // FNV prime 32-bit
+    protected int hash(String chave) {
+        long h = 0x811C9DC5L; // offset basis
+        for (int i = 0; i < chave.length(); i++) {
+            h = h ^ chave.charAt(i);
+            h = h * 0x01000193L; // prime
         }
-        // finalizer (mix)
-        h ^= (h >>> 13);
-        h *= 0x85EBCA6BL;
-        h ^= (h >>> 16);
-        return Math.floorMod((int) h, capacity);
+        // mistura simples
+        h = h ^ (h >>> 13);
+        h = h * 0x85EBCA6BL;
+        h = h ^ (h >>> 16);
+        int h32 = (int) h;
+        return modPositivo(h32, capacidade);
     }
 }
